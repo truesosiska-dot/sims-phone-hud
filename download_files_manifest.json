@@ -1,0 +1,11 @@
+{
+    "display_name": "Sims Mood & iPhone HUD",
+    "loading_order": 100,
+    "requires": [],
+    "optional": [],
+    "js": "index.js",
+    "css": "style.css",
+    "author": "Custom",
+    "version": "1.0.0",
+    "description": "Компактный виджет настроения The Sims и сюжетный iPhone с погодой и мессенджером."
+}

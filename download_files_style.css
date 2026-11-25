@@ -1,0 +1,408 @@
+/* === ПЛАВАЮЩИЕ КНОПКИ-ТРИГГЕРЫ === */
+#sims-hud-dock {
+    position: fixed;
+    top: 12px;
+    right: 60px;
+    z-index: 9998;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Квадратик Sims */
+#sims-mood-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(25, 28, 36, 0.88);
+    backdrop-filter: blur(8px);
+    border: 2px solid #4caf50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+#sims-mood-toggle:hover {
+    transform: scale(1.07);
+}
+
+/* Пламбоб (ромб) внутри квадрата */
+.sims-plumbob {
+    width: 14px;
+    height: 24px;
+    background: #4caf50;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    transition: background 0.3s ease;
+    animation: plumbobFloat 2.5s ease-in-out infinite;
+}
+
+@keyframes plumbobFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
+}
+
+/* Иконка Телефона */
+#iphone-toggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(25, 28, 36, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+#iphone-toggle:hover {
+    transform: scale(1.07);
+    border-color: #0a84ff;
+}
+
+#iphone-unread-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff3b30;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 1px 5px;
+    border-radius: 10px;
+    display: none;
+}
+
+/* === ОКНО МЕНЮ SIMS === */
+#sims-mood-panel {
+    position: fixed;
+    top: 62px;
+    right: 60px;
+    width: 270px;
+    background: rgba(245, 248, 252, 0.96);
+    color: #1e2430;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 2px solid #4caf50;
+    z-index: 9999;
+    padding: 14px;
+    display: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#sims-mood-panel.open {
+    display: block;
+    animation: fadeInScale 0.2s ease;
+}
+
+.sims-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.sims-mood-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #4caf50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.sims-mood-info h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.sims-mood-info p {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: #556070;
+    line-height: 1.3;
+}
+
+.sims-needs {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sims-need-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.sims-need-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 600;
+    color: #3a4352;
+}
+
+.sims-bar-bg {
+    width: 100%;
+    height: 7px;
+    background: #dce3ec;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sims-bar-fill {
+    height: 100%;
+    background: #4caf50;
+    border-radius: 4px;
+    transition: width 0.4s ease, background 0.3s ease;
+}
+
+/* === ОКНО IPHONE === */
+#iphone-container {
+    position: fixed;
+    top: 62px;
+    right: 60px;
+    width: 310px;
+    max-width: 92vw;
+    height: 540px;
+    max-height: 78vh;
+    background: #000;
+    border-radius: 38px;
+    padding: 10px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 0 2px #3a3a3c;
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+}
+
+#iphone-container.open {
+    display: flex;
+    animation: fadeInScale 0.2s ease;
+}
+
+.iphone-screen {
+    width: 100%;
+    height: 100%;
+    background: #1c1c1e;
+    border-radius: 30px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: #fff;
+}
+
+/* Статус-бар + Dynamic Island */
+.iphone-statusbar {
+    height: 32px;
+    padding: 6px 18px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 600;
+    background: rgba(28, 28, 30, 0.9);
+    z-index: 2;
+}
+
+.iphone-island {
+    width: 76px;
+    height: 18px;
+    background: #000;
+    border-radius: 12px;
+}
+
+/* Виджет погоды и сюжетного времени */
+.iphone-weather-bar {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    margin: 8px 12px 4px;
+    padding: 8px 12px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.iphone-weather-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.iphone-rp-date {
+    font-size: 10px;
+    opacity: 0.85;
+}
+
+.iphone-rp-weather {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.iphone-weather-icon {
+    font-size: 20px;
+}
+
+/* Шапка iMessage */
+.iphone-chat-header {
+    padding: 8px 14px;
+    background: rgba(44, 44, 46, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.iphone-contact-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.iphone-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0a84ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.iphone-contact-name {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.iphone-close-btn {
+    background: none;
+    border: none;
+    color: #0a84ff;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 2px 6px;
+}
+
+/* Лента сообщений */
+.iphone-messages {
+    flex: 1;
+    padding: 10px 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #000000;
+}
+
+.imsg-bubble-wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+}
+
+.imsg-bubble-wrap.user {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.imsg-bubble-wrap.bot {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.imsg-bubble {
+    padding: 8px 12px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.35;
+    word-wrap: break-word;
+}
+
+.imsg-bubble-wrap.user .imsg-bubble {
+    background: #0a84ff;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+
+.imsg-bubble-wrap.bot .imsg-bubble {
+    background: #262629;
+    color: #f2f2f7;
+    border-bottom-left-radius: 4px;
+}
+
+.imsg-time {
+    font-size: 9px;
+    color: #8e8e93;
+    margin-top: 2px;
+    padding: 0 4px;
+}
+
+/* Поле ввода в телефоне */
+.iphone-input-area {
+    padding: 8px 10px 14px;
+    background: #1c1c1e;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+#iphone-msg-input {
+    flex: 1;
+    background: #2c2c2e;
+    border: 1px solid #3a3a3c;
+    border-radius: 18px;
+    padding: 7px 12px;
+    color: #fff;
+    font-size: 12px;
+    outline: none;
+}
+
+#iphone-send-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #0a84ff;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+
+#iphone-send-btn:disabled {
+    background: #3a3a3c;
+    cursor: not-allowed;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.94) translateY(-6px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
